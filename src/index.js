@@ -2,7 +2,12 @@ import React from "react";
 import { render } from "react-dom";
 import { SelectMenu } from "./lib";
 
-render(<SelectMenu />, document.getElementById("root"));
+const listTest = ["tata", "toto", "titi"];
+
+render(<SelectMenu list={listTest} />, document.getElementById("root"));
+
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(<SelectMenu list={listTest} />);
 
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 // root.render(<React.StrictMode></React.StrictMode>);

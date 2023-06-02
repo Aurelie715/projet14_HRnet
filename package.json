@@ -1,6 +1,9 @@
 {
   "name": "select-menu-hrnet-oc",
-  "version": "0.1.0",
+  "description": "customizable selection menu",
+  "author": "Aurelie",
+  "keywords": ["select", "menu", "dropdown", "choice"],
+  "version": "0.2.3",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",

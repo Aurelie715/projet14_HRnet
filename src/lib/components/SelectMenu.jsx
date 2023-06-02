@@ -1,21 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-  import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
-export default function SelectMenu({list}) {
+export default function SelectMenu({list=[], value, classNameSelect, classNameValue, classNameIcon, classNameListContainer, classNameList, classNameElement}) {
   const [isOpen, setIsOpen] = useState(false);
-  const [value, setValue] =useState("");
+  const [currentValue, setCurrentValue] = useState(value);
+
+  const onOptionClick = (listElement) => {
+    setCurrentValue(listElement);
+    setIsOpen(false);
+  }
+  
+ useEffect(() => {
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest(".hrnet-oc-select")) {
+     setIsOpen(false);
+    };
+   });
+ }, [])
+
   return (
-    <div>
-      <div onClick={() => setIsOpen(!isOpen)}>
-        <span>{value}</span>
-        <em>{isOpen ? <FontAwesomeIcon icon={faChevronUp}/> : <FontAwesomeIcon icon={faChevronDown} />}</em>
+    <div className="hrnet-oc-select">
+      <div className={classNameSelect} onClick={() => setIsOpen(!isOpen)}>
+        <span className={classNameValue}>{currentValue}</span>
+        <em className={classNameIcon}>{isOpen ? <FontAwesomeIcon icon={faChevronUp}/> : <FontAwesomeIcon icon={faChevronDown} />}</em>
       </div>
       {isOpen ? 
-      (<div>
-        <ul>
-         {list.map((listElement, index)=>{
-          return (<li key={index} onClick={() => setValue(listElement)}>{listElement}</li>)
+      (<div className={classNameListContainer}>
+        <ul className={classNameList}>
+         {list.sort().map((listElement, index)=>{
+          return (<li className={classNameElement} key={index} onClick={() => onOptionClick(listElement)}>{listElement}</li>)
          })}
         </ul>
       </div>) : null}

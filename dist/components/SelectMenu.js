@@ -21,28 +21,31 @@ function SelectMenu(_ref) {
     classNameIcon,
     classNameListContainer,
     classNameList,
-    classNameElement
+    classNameElement,
+    onChange
   } = _ref;
   const [isOpen, setIsOpen] = (0, _react.useState)(false);
   const [currentValue, setCurrentValue] = (0, _react.useState)(value);
   const onOptionClick = listElement => {
     setCurrentValue(listElement);
     setIsOpen(false);
+    if (onChange) {
+      onChange(listElement);
+    }
   };
   (0, _react.useEffect)(() => {
-    console.log("test");
-    document.addEventListener('click', event => {
+    document.addEventListener("click", event => {
       if (!event.target.closest(".hrnet-oc-select")) {
         setIsOpen(false);
       }
-      ;
     });
   }, []);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "hrnet-oc-select"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: classNameSelect,
-    onClick: () => setIsOpen(!isOpen)
+    onClick: () => setIsOpen(!isOpen),
+    tabIndex: "0"
   }, /*#__PURE__*/_react.default.createElement("span", {
     className: classNameValue
   }, currentValue), /*#__PURE__*/_react.default.createElement("em", {

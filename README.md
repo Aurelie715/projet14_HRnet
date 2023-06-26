@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# select-menu-hrnet-oc
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Customizable selection menu
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+`npm install select-menu-hrnet-oc`
 
-### `npm start`
+## Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Use it in your app :
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```js
+import React, { useState } from "react";
+import { SelectMenu } from "select-menu-hrnet-oc";
 
-### `npm test`
+const departments = ["Sales", "Marketing", "Engineering", "Human Resources", "Legal"];
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+export default function App() {
+    const [department, setDepartment] = useState("Engineering");
 
-### `npm run build`
+    return (
+        <div>
+            <Select
+            list={departments}
+            value={department}
+            onChange={(department) => setDepartment(department)}
+            classNameSelect="class-name-select"
+            classNameValue="class-name-value"
+            classNameIcon="class-name-icon"
+            classNameListContainer="class-name-container"
+            classNameList="class-name-list"
+            classNameElement="class-name-element"
+            />
+        <div/>
+    );
+}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Props
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Common props you may want to specify include:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `list` : An array of strings corresponding to the various select options
+- `value` : The default selected value
+- `onChange` : A callback function to handle change events
 
-### `npm run eject`
+#### Customising the style
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+By default there is no style in this package, to customize it use the props classNames :
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `classNameSelect` : Correspond to the className of the select field
+- `classNameValue` : Correspond to the current value of the field
+- `classNameIcon` : Correspond to the icons arrow up and arrow down on the field
+- `classNameListContainer` : Correspond to the container of select options when open
+- `classNameList` : Correspond to the <ul> tag of the list of select options when open
+- `classNameElement` : Correspond to the <li> tag to the select options when open
